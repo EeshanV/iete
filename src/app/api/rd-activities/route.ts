@@ -55,7 +55,7 @@ export async function GET() {
         existingCategory.items.push({
           name: item.name,
           description: item.description || '',
-          specs: item.specs,
+          specs: item.specs || '',
         })
       } else {
         acc.push({
@@ -63,7 +63,7 @@ export async function GET() {
           items: [{
             name: item.name,
             description: item.description || '',
-            specs: item.specs,
+            specs: item.specs || '',
           }]
         })
       }
