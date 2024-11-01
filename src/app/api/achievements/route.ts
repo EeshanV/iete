@@ -22,7 +22,7 @@ export async function POST(request: Request) {
       data: json,
     })
     return NextResponse.json(achievement)
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Error creating achievement' }, { status: 500 })
   }
 } 

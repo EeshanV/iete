@@ -1,6 +1,20 @@
 import { prisma } from '@/lib/prisma'
 import { NextResponse } from 'next/server'
 
+interface InfrastructureGroup {
+  title: string;
+  items: Array<{
+    name: string;
+    description: string;
+    specs: string;
+  }>;
+}
+
+interface ProjectGroup {
+  category: string;
+  items: string[];
+}
+
 export async function GET() {
   try {
     // Check database connection
@@ -54,7 +68,7 @@ export async function GET() {
         })
       }
       return acc
-    }, [] as any[])
+    }, [] as InfrastructureGroup[])
 
     // Group projects by category
     const groupedProjects = projects.reduce((acc, item) => {
@@ -68,7 +82,7 @@ export async function GET() {
         })
       }
       return acc
-    }, [] as any[])
+    }, [] as ProjectGroup[])
 
     return NextResponse.json({
       infrastructure: groupedInfrastructure,
