@@ -89,7 +89,7 @@ export default function AdvisoryCommitteePage() {
         <div className="mb-8">
           <h1 className="text-4xl font-bold mb-4 text-[#0A2E5C]">Advisory Committee</h1>
           <p className="text-gray-600 leading-relaxed">
-            Our distinguished Advisory Committee comprises leading experts from academia, industry, and government, providing strategic guidance to advance IETE's mission and objectives.
+            Our distinguished Advisory Committee comprises leading experts from academia, industry, and government, providing strategic guidance to advance IETE&apos;s mission and objectives.
           </p>
         </div>
 

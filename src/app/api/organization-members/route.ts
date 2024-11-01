@@ -9,7 +9,7 @@ export async function GET() {
       },
     })
     return NextResponse.json(members)
-  } catch (_error) {
+  } catch (error) {
     return NextResponse.json({ error: 'Error fetching organization members' }, { status: 500 })
   }
 } 
