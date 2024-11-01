@@ -9,6 +9,7 @@ const subCommittees = [
     name: "Finance & Policy Planning",
     icon: Calculator,
     color: "bg-blue-100 text-blue-600",
+    description: "Oversees financial planning and policy development for IETE Hyderabad.",
     chairman: "Prof. Nuli Namassivaya",
     members: [
       "Sri Ashwani Kumar Sangamker ",
@@ -20,6 +21,7 @@ const subCommittees = [
     name: "Continuing Education Program",
     icon: BookOpenCheck,
     color: "bg-green-100 text-green-600",
+    description: "Manages ongoing educational initiatives and professional development programs.",
     chairman: " Ms.Tuti Sandhya",
     members: [
       "Dr.PA Harsha Vardhini",
