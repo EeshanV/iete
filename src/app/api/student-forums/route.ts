@@ -12,7 +12,7 @@ export async function GET() {
       }
     })
     return NextResponse.json(forums)
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json({ error: 'Error fetching student forums' }, { status: 500 })
   }
 } 

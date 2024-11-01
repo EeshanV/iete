@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { Navbar } from '@/components/Navbar'
-import { Shield, Award, Star, Users, Crown, Briefcase } from 'lucide-react'
+import { Shield, Star, Users, Crown, Briefcase } from 'lucide-react'
 
 const advisoryCommittee = [
   { 

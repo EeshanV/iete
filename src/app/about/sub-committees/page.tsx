@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { Navbar } from '@/components/Navbar'
-import { Users, BookOpen, Briefcase, GraduationCap, Wrench, Award, Calculator, Building, BookOpenCheck, Users2, Library } from 'lucide-react'
+import { BookOpen, Briefcase, GraduationCap, Calculator, Building, BookOpenCheck, Users2, Library } from 'lucide-react'
 
 const subCommittees = [
   {

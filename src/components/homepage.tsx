@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Menu, X, Search, ChevronUp } from 'lucide-react'
+import { X, ChevronUp } from 'lucide-react'
 import { Navbar } from './Navbar'
 import Link from 'next/link'
 
@@ -12,8 +12,6 @@ interface Achievement {
 }
 
 export function HomepageComponent() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [isAboutModalOpen, setIsAboutModalOpen] = useState(false)
   const [achievements, setAchievements] = useState<Achievement[]>([])
 
@@ -34,17 +32,6 @@ export function HomepageComponent() {
   return (
     <div className="min-h-screen flex flex-col bg-white text-gray-800">
       <Navbar />
-      {/* Search Bar */}
-      {isSearchOpen && (
-        <div className="bg-[#F0F2F5] p-4">
-          <input
-            type="text"
-            placeholder="Search..."
-            className="w-full p-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#00B4D8]"
-          />
-        </div>
-      )}
-
       {/* Hero Section with Background Image */}
       <section className="relative h-[60vh] flex items-center justify-center text-white">
         {/* Background Image */}

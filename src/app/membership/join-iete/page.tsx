@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { Navbar } from '@/components/Navbar'
-import { Download, FileText, CreditCard, MapPin, Building2, Phone, Mail, GraduationCap } from 'lucide-react'
+import { Download, FileText, MapPin, Building2, Phone, Mail, GraduationCap } from 'lucide-react'
 import Link from 'next/link'
 
 export default function JoinIETEPage() {
