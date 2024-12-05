@@ -1,8 +1,12 @@
-'use client'
 
 import React from 'react'
 import { Navbar } from '@/components/Navbar'
 import { BookOpen, Briefcase, GraduationCap, Calculator, Building, BookOpenCheck, Users2, Library } from 'lucide-react'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Sub Committees',
+}
 
 const subCommittees = [
   {
@@ -10,11 +14,10 @@ const subCommittees = [
     icon: Calculator,
     color: "bg-blue-100 text-blue-600",
     description: "Oversees financial planning and policy development for IETE Hyderabad.",
-    chairman: "Prof. Nuli Namassivaya",
+    chairman: "Sri A.K. Sangamker",
     members: [
-      "Sri Ashwani Kumar Sangamker ",
-      "Dr. Nukala Srinivasa Rao ",
-      "Er. Nuli Namassivaya "
+      "Sri P. Padmanabha Rao, Member ",
+      "Dr. N. Srinivas Eao, Member "
     ],
   },
   {
@@ -22,59 +25,49 @@ const subCommittees = [
     icon: BookOpenCheck,
     color: "bg-green-100 text-green-600",
     description: "Manages ongoing educational initiatives and professional development programs.",
-    chairman: " Ms.Tuti Sandhya",
+    chairman: "Chandika Mohan",
     members: [
-      "Dr.PA Harsha Vardhini",
-      "B.Vidya Bhargavi",
-      "K.Santosh Kumar",
-      "Dr.N.Suresh"
+      "Mrs. C.V. Keerthi Latha, Member ",
     ],
   },
   {
     name: "Technical Programmes & Publications Sub-Committee",
     icon: BookOpen,
     color: "bg-purple-100 text-purple-600",
-    chairman: "Dr.A.V.Krishna Prasad",
+    chairman: "Dr. S. Suryanarayana",
     members: [
-      "Abhishek Singh Shakya",
-      "Dr.V.Rama Rao",
-      "Dr.G.Prasad",     
-      "Dr.P.Raj Reddy"
+      "G. V. Chalapathi Rao, Mamber",
+      "Mrs. Mamatha, AVN College",     
+      "Ch. Venkateswara Rao, Mamber"
     ],
   },
   {
     name: "R & D and Industrial Coordination ",
     icon: Briefcase,
     color: "bg-amber-100 text-amber-600",
-    chairman: "Dr.D.Rangarathan",
+    chairman: "Dr. Karthik",
     members: [
-      "Dr.I.Sharath Chandra",
-      "Mr. P.Venkatesham Gupta",     
-      "Dhiraj Kumar K. Deshpande"
+      "Mr. Surendra, Member",
     ],
   },
   {
     name: "Membership Drive, ISF & Sub-Centers ",
     icon: Users2,
     color: "bg-red-100 text-red-600",
-    chairman: "Dr. I.Sharath Chandra",
+    chairman: "Sri. Dr. K.V.N.S.V.P.L. Narsimham",
     members: [
-      "Dr.G.Srinivasa Reddy",
-      "T.Sridhar",
-      "Prof.A.Sarveshwar Rao",
-      "Dr. A.V.Krishna Prasad"
+      "Prof. P. Raj Reddy, Member",
+      "Ch. Srikanth, Member",
     ],
   },
   {
     name: "Short Term Courses and Seminars",
     icon: GraduationCap,
     color: "bg-indigo-100 text-indigo-600",
-    chairman: "Dr.V.Rama Rao",
+    chairman: "Dr. I. Sharath Chandra",
     members: [
-      "M.Srilakshmi Ravali",
-      "Prof.A.Gopala Sharma",
-      "Dr.M.Parvathi",
-      "C.V.Keerthi Latha"
+      "Mrs. Shailaja, Member",
+      "Mrs. Radhika, Member",
     ],
   },
   {
@@ -83,19 +76,17 @@ const subCommittees = [
     color: "bg-indigo-100 text-indigo-600",
     chairman: "Dr. P.Raj Reddy",
     members: [
-      "Er. K.Gnaneswar Rao"
+      "N/A",
     ],
   },
   {
     name: "Women Empowerment & Library, student affairs",
     icon: Library,
     color: "bg-indigo-100 text-indigo-600",
-    chairman: "Ms.C.V.Keerthi Latha",
+    chairman: "Mr. A. Bala Raju",
     members: [
-      "Ms. J Shailaja",
-      "Mrs.Y.Latha",
-      "Mr.Koteshwar Rao",
-      "Tuti Sandhya"
+      "Mrs. Mamatha",
+      "Mrs. Shailaja",
     ],
   }
 ]

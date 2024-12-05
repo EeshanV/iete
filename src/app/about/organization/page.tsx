@@ -1,7 +1,11 @@
 import React from 'react'
 import { OrganizationComponent } from './OrganizationComponent'
 import { prisma } from '@/lib/prisma'
+import { Metadata } from 'next'
 
+export const metadata: Metadata = {
+  title: 'Organization',
+}
 export default async function OrganizationPage() {
   try {
     const members = await prisma.organizationMember.findMany({

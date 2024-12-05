@@ -4,30 +4,14 @@ import { useState, useEffect } from 'react'
 import { X, ChevronUp } from 'lucide-react'
 import { Navbar } from './Navbar'
 import Link from 'next/link'
+import { Achievement } from '@prisma/client'
 
-interface Achievement {
-  title: string;
-  year: string;
-  url?: string;
+interface HomePageProps {
+  achievements: Achievement[]
 }
 
-export function HomepageComponent() {
+export default function HomePage({ achievements = [] }: HomePageProps) {
   const [isAboutModalOpen, setIsAboutModalOpen] = useState(false)
-  const [achievements, setAchievements] = useState<Achievement[]>([])
-
-  useEffect(() => {
-    async function fetchAchievements() {
-      try {
-        const response = await fetch('/api/achievements')
-        const data = await response.json()
-        setAchievements(data)
-      } catch (error) {
-        console.error('Error fetching achievements:', error)
-      }
-    }
-
-    fetchAchievements()
-  }, [])
 
   return (
     <div className="min-h-screen flex flex-col bg-white text-gray-800">
@@ -166,54 +150,27 @@ export function HomepageComponent() {
         </div>
       )}
 
-      {/* Featured Achievements */}
-      <section className="py-16 px-4 md:px-8 bg-[#F0F2F5]">
-        <h2 className="text-3xl font-bold text-center mb-12">Featured Achievements</h2>
-        <div className="relative max-w-7xl mx-auto">
-          {/* Gradient Overlays */}
-          <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-[#F0F2F5] to-transparent z-10"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-[#F0F2F5] to-transparent z-10"></div>
-          
-          {/* Scroll Container */}
+      {/* Achievements Section */}
+      <section className="py-12 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-8">Achievements</h2>
           <div className="overflow-x-auto hide-scrollbar">
             <div className="flex space-x-6 py-4 px-20">
-              {achievements?.map((item, index) => (
+              {Array.isArray(achievements) && achievements.map((item, index) => (
                 <a 
                   key={index}
                   href={item.url || '#'}
-                  target={item.url ? "_blank" : undefined}
-                  rel={item.url ? "noopener noreferrer" : undefined}
-                  className={`flex-none w-80 bg-white rounded-xl shadow-md 
-                             transform hover:-translate-y-1 transition-all duration-300 
-                             border border-gray-100 ${item.url ? 'cursor-pointer hover:shadow-xl' : 'cursor-default'}`}
+                  target={item.url ? "_blank" : "_self"}
+                  rel="noopener noreferrer"
+                  className="flex-shrink-0 w-64 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200"
                 >
-                  <div className="relative h-32 bg-[#0A2E5C] rounded-t-xl overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#00B4D8] to-[#0A2E5C] opacity-90"></div>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-1xl font-bold text-white">{item.title}</span>
-                    </div>
-                    {/* Decorative Elements */}
-                    <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-white/10 rounded-full"></div>
-                    <div className="absolute -left-4 -top-4 w-16 h-16 bg-white/10 rounded-full"></div>
-                  </div>
                   <div className="p-6">
-                    <p className="text-gray-700 leading-relaxed font-bold">
+                    <div className="text-lg font-semibold text-gray-900 mb-2">
                       {item.year}
-                    </p>
-                    {item.url && (
-                      <div className="mt-4 flex justify-end">
-                        <span className="inline-flex items-center text-sm text-[#00B4D8] font-medium group">
-                          Learn more
-                          <svg 
-                            className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform" 
-                            fill="none" 
-                            viewBox="0 0 24 24" 
-                            stroke="currentColor"
-                          >
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </span>
-                      </div>
+                    </div>
+                    <p className="text-gray-600">{item.title}</p>
+                    {item.description && (
+                      <p className="text-sm text-gray-500 mt-2">{item.description}</p>
                     )}
                   </div>
                 </a>
@@ -224,7 +181,7 @@ export function HomepageComponent() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-[#0A2E5C] text-white py-12 px-4 md:px-8">
+      <footer className="bg-[#0A2E5C] text-white py-6 px-4 md:px-8">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <h3 className="text-xl font-bold mb-4">About IETE Hyderabad</h3>
@@ -266,7 +223,7 @@ export function HomepageComponent() {
             </form>
           </div>
         </div>
-        <div className="mt-8 pt-8 border-t border-gray-700 text-center">
+        <div className="mt-4 pt-4 border-t border-gray-700 text-center">
           <p>&copy; 2024 IETE Hyderabad. All rights reserved.</p>
         </div>
       </footer>

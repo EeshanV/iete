@@ -1,5 +1,28 @@
-import { HomepageComponent } from '@/components/homepage'
+import { Metadata } from 'next'
+import HomePage from '../components/homepage'
+import prisma from '@/lib/prisma'
 
-export default function Home() {
-  return <HomepageComponent />
+export const metadata: Metadata = {
+  title: 'IETE - Institution of Electronics and Telecommunication Engineers',
+  description: 'Institution of Electronics and Telecommunication Engineers',
+}
+
+async function getAchievements() {
+  try {
+    const achievements = await prisma.achievement.findMany({
+      orderBy: {
+        year: 'desc',
+      },
+    })
+    return achievements
+  } catch (error) {
+    console.error('Error fetching achievements:', error)
+    return []
+  }
+}
+
+export default async function Page() {
+  const achievements = await getAchievements()
+  
+  return <HomePage achievements={achievements} />
 }

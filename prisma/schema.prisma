@@ -114,12 +114,13 @@ model Event {
   date          DateTime
   description   String
   imageUrl      String?
+  url           String?  // Added URL field
   category      String
   location      String
-  isHighlighted Boolean  @default(false)
   images        EventImage[]
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
+  isHighlighted Boolean @default(false)
 }
 
 // Event Image model
@@ -131,4 +132,15 @@ model EventImage {
   eventId   Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-} 
+}
+
+// User model
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  password      String
+  role          String    @default("user")
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}

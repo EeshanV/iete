@@ -1,8 +1,10 @@
-'use client'
-
-import React from 'react'
+import { Metadata } from 'next'
 import { Navbar } from '@/components/Navbar'
 import { Shield, Star, Users, Crown, Briefcase } from 'lucide-react'
+
+export const metadata: Metadata = {
+  title: 'Advisory Committee',
+}
 
 const advisoryCommittee = [
   { 

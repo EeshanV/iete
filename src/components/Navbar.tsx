@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Menu, X, ChevronDown } from 'lucide-react'
+import { usePathname } from 'next/navigation'
 
 const navItems = [
   { name: 'Home', href: '/' },
@@ -26,8 +27,8 @@ const navItems = [
     children: [
       { name: 'Join IETE', href: '/membership/join-iete' },
       { name: 'Membership Categories', href: '/membership/membership-categories' },
-      { name: 'Organization Members', href: '/membership/organization-members' },
       { name: 'Registration of Experts', href: '/membership/registration-of-experts' },
+      { name: 'Organization Members', href: '/membership/organization-members' },
       { name: 'E-Directory of Members', href: 'http://iete-elan.ac.in/elan/membership/membership.jsp', external: true },
     ],
   },
@@ -59,6 +60,7 @@ export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
   const [isScrolled, setIsScrolled] = useState(false)
+  const pathname = usePathname()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -71,6 +73,14 @@ export const Navbar = () => {
 
   const toggleDropdown = (dropdown: string) => {
     setOpenDropdown(openDropdown === dropdown ? null : dropdown)
+  }
+
+  const isActiveLink = (href: string) => {
+    return pathname === href
+  }
+
+  const isActiveDropdown = (children: any[]) => {
+    return children.some(child => pathname === child.href)
   }
 
   return (
@@ -105,8 +115,8 @@ export const Navbar = () => {
                         onMouseEnter={() => setOpenDropdown(item.name)}
                         className={`flex items-center px-3 py-2 rounded-md text-sm font-medium ${
                           isScrolled 
-                            ? 'text-gray-700 hover:bg-gray-100' 
-                            : 'text-white hover:bg-black/10'
+                            ? `text-gray-700 ${isActiveDropdown(item.children) ? 'bg-gray-100' : 'hover:bg-gray-100'}` 
+                            : `text-white ${isActiveDropdown(item.children) ? 'bg-black/10' : 'hover:bg-black/10'}`
                         } transition-colors`}
                       >
                         {item.name}
@@ -127,7 +137,11 @@ export const Navbar = () => {
                                   href={child.href}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                  className={`block px-4 py-2 text-sm ${
+                                    isActiveLink(child.href)
+                                      ? 'bg-gray-100 text-gray-900'
+                                      : 'text-gray-700 hover:bg-gray-100'
+                                  }`}
                                   onClick={() => setOpenDropdown(null)}
                                 >
                                   {child.name}
@@ -136,7 +150,11 @@ export const Navbar = () => {
                                 <Link
                                   key={childIndex}
                                   href={child.href}
-                                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                  className={`block px-4 py-2 text-sm ${
+                                    isActiveLink(child.href)
+                                      ? 'bg-gray-100 text-gray-900'
+                                      : 'text-gray-700 hover:bg-gray-100'
+                                  }`}
                                   onClick={() => setOpenDropdown(null)}
                                 >
                                   {child.name}
@@ -152,8 +170,8 @@ export const Navbar = () => {
                       href={item.href} 
                       className={`px-3 py-2 rounded-md text-sm font-medium ${
                         isScrolled 
-                          ? 'text-gray-700 hover:bg-gray-100' 
-                          : 'text-white hover:bg-black/10'
+                          ? `text-gray-700 ${isActiveLink(item.href) ? 'bg-gray-100' : 'hover:bg-gray-100'}` 
+                          : `text-white ${isActiveLink(item.href) ? 'bg-black/10' : 'hover:bg-black/10'}`
                       } transition-colors`}
                     >
                       {item.name}
@@ -196,7 +214,11 @@ export const Navbar = () => {
                   <>
                     <button
                       onClick={() => toggleDropdown(item.name)}
-                      className="w-full flex items-center justify-between px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md"
+                      className={`w-full flex items-center justify-between px-3 py-2 rounded-md ${
+                        isActiveDropdown(item.children)
+                          ? 'bg-gray-100 text-gray-900'
+                          : 'text-gray-700 hover:bg-gray-100'
+                      }`}
                     >
                       {item.name}
                       <ChevronDown 
@@ -216,7 +238,11 @@ export const Navbar = () => {
                               href={child.href}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="block px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-md"
+                              className={`block px-3 py-2 rounded-md ${
+                                isActiveLink(child.href)
+                                  ? 'bg-gray-100 text-gray-900'
+                                  : 'text-gray-600 hover:bg-gray-100'
+                              }`}
                               onClick={() => setIsMenuOpen(false)}
                             >
                               {child.name}
@@ -225,7 +251,11 @@ export const Navbar = () => {
                             <Link
                               key={childIndex}
                               href={child.href}
-                              className="block px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-md"
+                              className={`block px-3 py-2 rounded-md ${
+                                isActiveLink(child.href)
+                                  ? 'bg-gray-100 text-gray-900'
+                                  : 'text-gray-600 hover:bg-gray-100'
+                              }`}
                               onClick={() => setIsMenuOpen(false)}
                             >
                               {child.name}
@@ -238,7 +268,11 @@ export const Navbar = () => {
                 ) : (
                   <Link
                     href={item.href}
-                    className="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md"
+                    className={`block px-3 py-2 rounded-md ${
+                      isActiveLink(item.href)
+                        ? 'bg-gray-100 text-gray-900'
+                        : 'text-gray-700 hover:bg-gray-100'
+                    }`}
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {item.name}

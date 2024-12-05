@@ -1,8 +1,11 @@
-'use client'
-
 import React from 'react'
 import { Navbar } from '@/components/Navbar'
 import { MapPin, Phone, Mail, Clock, Globe, User, Building2 } from 'lucide-react'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Contact Us',
+}
 
 export default function ContactUsPage() {
   return (
@@ -92,7 +95,7 @@ export default function ContactUsPage() {
                       </div>
                       <div>
                         <p className="font-medium text-gray-700">Chairman</p>
-                        <p className="text-gray-600">Er. Nuli Namassivaya</p>
+                        <p className="text-gray-600">Shri. Ashwani Kumar Sangamker</p>
                       </div>
                     </div>
                     <div className="flex items-start">
@@ -101,7 +104,7 @@ export default function ContactUsPage() {
                       </div>
                       <div>
                         <p className="font-medium text-gray-700">Honorary Secretary</p>
-                        <p className="text-gray-600">Sri Ashwani Kumar Sangamker</p>
+                        <p className="text-gray-600">Sri P. Padmanabha Rao</p>
                       </div>
                     </div>
                   </div>

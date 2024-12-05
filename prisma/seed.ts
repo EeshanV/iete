@@ -1,6 +1,5 @@
-import { PrismaClient } from '@prisma/client'
-
-const prisma = new PrismaClient()
+import { PrismaClient } from '@prisma/client'; // Correct import for Prisma Client
+const prisma = new PrismaClient(); // Create a new instance
 
 async function main() {
   await prisma.organizationMember.deleteMany()
@@ -8,150 +7,87 @@ async function main() {
   await prisma.organizationMember.createMany({
     data: [
       {
-        name: "Er. Nuli Namassivaya",
+        name: "Shri. Ashwani Kumar Sangamker",
         role: "Chairman",
+        imageUrl: "/images/secretary.jpg",
+        order: 1,
+      },
+      {
+        name: "Er. Nuli Namassivaya",
+        role: "Immed. past Chairman",
         imageUrl: "/images/chairman.jpg",
         bio: `Nuli Namassivaya born on 29th Sep., 1967 at Eluru, W.G.Dt. A.P. is highly motivated Teaching Professional, having more than three decades of Teaching Experience in Electronics, Communication, Computer and Electrical subjects.
 He was responsible for obtaining grant of 7.2 lakhs from AICTE under MODROBS & established PCB Fabrication Lab.
 He published 44 papers at International & National Journals & Conferences to his credit and out of 6 papers won Best Paper awards.`,
-        order: 1,
-      },
-      {
-        name: "Prof. K. Gnaneshwar Rao",
-        role: "Immd. Past Chairman",
-        imageUrl: "/images/pastchairman.jpg",
-        bio: `Gnaneshwar Rao Kamtam holds B.Tech (ECE), M.Tech (CSc) and Pursuing PhD from Osmania University, Hyderabad.`,
         order: 2,
       },
       {
-        name: "Shri. Ashwani Kumar Sangamker",
-        role: "Hon. Secretary",
-        imageUrl: "/images/secretary.jpg",
+        name: "Dr. P. Raja Reddy",
+        role: "Vice Chairman",
         order: 3,
+      },
+      {
+        name: "Dr. KVNSVPL Narasimha",
+        role: "Vice Chairman",
+        order: 4,
+      },
+      {
+        name: "Sri P. Padmanabha Rao",
+        role: "Hon. Secretary",
+        order: 5,
       },
       {
         name: "Dr N Srinivasa Rao",
         role: "Hon. Treasurer",
         imageUrl: "/images/treasurer.jpeg",
         bio: `Dr Nukala Srinivasa Rao, born in 1962. BE (ECE) from OU and M. Tech, from REC Warangal, PhD in Electromagnetics from JNTUHyd.`,
-        order: 4,
-      },
-      { name: "Dr S Arvind", 
-        role: "EC - Member", 
-        imageUrl: "/images/ecm1.jpg",
-        bio : `An academician and administrator with social responsibility possessing 31 years of rich experience in teaching at various levels  
-              Been on board of various committees in engineering institutes.
-              Pursued B.E., M.Tech. and Ph.D. in Computer Science and Engineering, presented
-              Published 54 papers in reputed National and International conferences and Journals including SCI and Scopus indexed.
-              Chaired several sessions in international conferences.
-              Recipient of state & district level awards for social service, best guide rewards from KSCST Raichur and IBM & Bites, Bangalore.`,
-        order: 5,
-      },
-      { name: "Shri Dhiraj Kumar K. Deshpande", 
-        role: "EC - Member", 
-        imageUrl: "/images/ecm2.jpg",
-        bio : `QUALIFICATION: 
-                  B.E. (ELECTRONICS & COMMUNICATION ENGINEERING)
-                  M.TECH.(VLSI SYSTEM DESIGN)
-                  DESIGNATION: ASSOCIATE PROFESSOR
-                  EXPERIENCE: 27 YEARS 7 MONTHS
-                Papers published in proceedings of international seminars/conference: 03
-                Papers published in proceedings of national seminars/conference: 07
-                MEMBERS OF PROFESSIONAL BODIES:
-                  1) FELLOW OF IETE(F233924)
-                  2) LIFE MEMBER OF ISTE(LM 26891) 
-                SERVED AS: EC MEMBER & HONORARY TREASURER GULBARGA SUB CENTRE`,
         order: 6,
       },
-      { name: "Dr. A V Krishna Prasad", 
-        role: "EC - Member", 
-        imageUrl: "/images/ecm3.jpg",
-        bio : `Dr. A V Krishna Prasad, M.Tech. (Computer Science and Engineering), JNTUH, Hyderabad. 
-                Working as Associate Professor in IT Department, MVSR Engineering College, Hyderabad with 23 (+) years of teaching experience.
-                Worked as Professor in Department of Computer Science and Engineering at KL University, Green fields, Vaddeswaram, Vijayawada for One Year (2015 & 2016)
-                Recognized Research Supervisor for JNTUH, OU & KL U.
-                Working as a Nomination Committee Member and Past Secretary for CSI (Computer Society of India) Hyderabad Chapter.
-                Book under proposal with title "Innovative Research on IOT with Data Science and Machine Learning".
-                Published a book with title "Exploring the convergence of Big Data with Internet of Things" as an Editor from IGI Global Publications. 
-                Organized several workshops on Big Data Analytics using R under CSI - SIGBDA. 
-                Delivered key note technical talks in National and International conferences. 
-                Published research papers in 30 International Journals and 15 Conference Paper proceedings (6 International and 9 National conferences).`,
+      { name: "Dr S Surya Narayana", 
+        role: "Committee Member", 
         order: 7,
       },
-      { name: "Dr. P. Raj Reddy", 
-        role: "EC - Member", 
-        imageUrl: "/images/ecm4.jpg",
-        bio : `Exp: 26 Years in Teaching & Admin Positions
-                At present  working as Head & Prof  of Maths at CBIT
-                Published 30 papers in various National / International journals and presented 50 papers in various conferences and also organized 05 conf / workshops / FDP sponsored by AICTE.
-                Member in various bodies such as APSMS (Andhra Pradesh Mathematical Society)and Fellow IETE(Hyderabad Centre)`,
+      { name: "Dr. I. Sharath Chandra", 
+        role: "Committee Member",
         order: 8,
       },
-      { name: "Dr P A Harsha Vardhini", 
-        role: "EC - Member", 
-        imageUrl: "/images/ecm5.jpg",
-        bio : "",
+      { name: "Dr. Chandika Mohan Babu", 
+        role: "Committee Member",
         order: 9,
       },
-      { name: "Ms. C. V. Keerthi Latha", 
-        role: "EC - Member", 
-        imageUrl: "/images/ecm6.jpg",
-        bio : `C.V.KEERTHI LATHA currently working as Assistant Professor in the department of Electronics and Communications Engineering in Stanley College of Engineering and Technology for Women.
-                She completed her B.Tech from Vidya Jyothi Institute of Technology in 2004, and M.E in the stream of Digital Systems from Osmania University in 2013. She is pursuing her PhD(ECE) from Osmania University in Embedded system domain.
-                Her area of interests is Digital circuits, Biomedical Signal Processing, Image processing, Embedded Systems.Presented a survey paper in ICPET - 2016 Conference on Brain MRIs.
-                She conducted different workshops and FDPs in various domains.Attended a number of National and International seminars, conferences and workshops and published papers in reputed Journals.
-                Totally she has 13 years of experience in Teaching UG and PG students.She guided 20 UG projects and 9 PG projects.
-                She was awarded as best project guide in 2016. She is life member of IETE, and currently serving as EC member and Short Term Training Program Sub-Committee Chairman for IETE, Hyderabad Centre 2021 - 2022.`,
+      { name: "Sri A. Balaraju", 
+        role: "Committee Member", 
         order: 10,
       },
-      { name: "Ms. T. Sandhya", 
-        role: "EC - Member", 
-        imageUrl: "/images/ecm7.jpg",
-        bio : `Tuti Sandhya- Resource Person, Mahatma Gandhi National Council of Rural Education(MGNCRE), Co - Director Center for Engineering Education and Development, KGRCET
-                Received Faculty Excellence Award on 05th September 2021 from Ed & Immigo Consultancy by Shri Naveen Mittal ji Commissioner Collegiate Education & Technical Education Government of Telangana.
-                Established TLC (Teaching Learning Center) & CEED (Center for Engineering Education Development).
-                Selected as Indo Universal Collaborative Committee for Engineering Education (IUCEE) Leader.Received the Title "International Engineering Educator ING.PAED. IGIP" fromInternational Society for Engineering Pedagogy
-                Received Top Social Learner Award from Wiksate
-                Received Certificate of Completion for IUCEE, International Engineering Educator Certification
-                Published and Presented 22 Papers in IEEE xplore/ JEET /IJATES/ IJSEAT/World Engineering Education Forum
-                Received an award "Achiever GENTLE", for Online Module preparation for 21st century Teaching and Learning from Inpods - IUCEE.`,
+      { name: "Dr G. Karthik", 
+        role: "Committee Member", 
         order: 11,
       },
       { name: "Dr. V. Gunasekhar Reddy", 
-        role: "President, New Delhi (2022-23)", 
+        role: "Council Member", 
         imageUrl: "/images/gcm1.jpg",
         bio : "",
         order: 12,
       },
-      { name: "Dr. Niranjan Prasad", 
-        role: "GC - Member( 2020-2023)", 
-        imageUrl: "/images/gcm3.jpeg",
-        bio : `Dr. Niranjan Prasad is presently working as Scientist-G (Level-14 equivalent to Joint Secretary) in prestigious DLRL Hyderabad Laboratory of DRDO under the Ministry of Defence, Govt. of India.
-                He obtained his M.E. (ECE) with specialization in Microwave and Radar Engineering and PhD Degrees all from Osmania University, Hyderabad in the years 1997 and 2008 respectively.
-                Dr.  Prasad since joining worked in the Design, Development, Integration and Evaluation of Active Integrated Antenna, Communication Electronic Warfare (EW) Antennas, Antennas for IFF Akash of Prestigious Missile Programme IGMDP.
-                Later on he was instrumental in Designing and Developing Radar Jammer Transmitters and integrated Electronic Counter Measure Systems in the for various important DLRL Projects such as Deception Jammer of Project TEMPEST of Indian Air Force, Shipborne ECM System of Project ELLORA for SANGRAHA Programme of Indian Navy and vehicle mounted Integrated Radar EW System development under the SAMAYUKTA Programme of the Indian Army.
-                Dr. Niranjan Prasad has been awarded Technology Group Awards for his significant contribution in the Design and Development of the EW Sub-Systems and for successful conduction of the Users Trials.
-                He has authored more than 25 technical papers published in reputed National & International Journals and presented in Conferences in India and abroad. `,
-        order: 13,
-      },
-      { name: "Prof. Baswaraj Gadgay", 
-        role: "GC - Member (2020-2023)", 
-        imageUrl: "/images/gcm4.jpg",
-        bio : "",
-        order: 14,
-      },
       { name: "Dr. K Jaya Sankar", 
-        role: "GC - Member(2021-2024)", 
+        role: "Council Member", 
         imageUrl: "/images/gcm5.jpg",
         bio : "",
-        order: 15,
+        order: 13,
+      },
+      {
+        name: "Er. K. Gnaneshwar Rao",
+        role: "Council Member",
+        imageUrl: "/images/pastchairman.jpg",
+        bio: `Gnaneshwar Rao Kamtam holds B.Tech (ECE), M.Tech (CSc) and Pursuing PhD from Osmania University, Hyderabad.`,
+        order: 14,
       },
       { 
         name: "Dr. K Seetha Ram Babu", 
-        role: "GC - Member (Org.)(2021-2024)", 
+        role: "Council Member", 
         imageUrl: "/images/gcm6.jpg",
         bio: "",
-        order: 16,
+        order: 15,
       },
     ]
   })
@@ -192,11 +128,9 @@ He published 44 papers at International & National Journals & Conferences to his
     ]
   })
 
-  // Clear existing student forums and coordinators
   await prisma.coordinator.deleteMany()
   await prisma.studentForum.deleteMany()
 
-  // Seed student forums with coordinators
   const forums = [
     {
       name: "Maturi Venkata Subba Rao (MVSR) Engineering College",
@@ -2124,7 +2058,6 @@ COMBODRIVE`
         category: "competition",
         location: "IETE Hyderabad Centre",
         imageUrl: "/images/events/science-day-2024.jpg",
-        isHighlighted: false,
         images: {
           create: [
             {
@@ -2151,7 +2084,6 @@ COMBODRIVE`
         category: "workshop",
         location: "IETE Auditorium",
         imageUrl: "/images/events/iot-workshop.jpg",
-        isHighlighted: false,
         images: {
           create: [
             {
@@ -2178,7 +2110,6 @@ COMBODRIVE`
         category: "other",
         location: "IETE Hyderabad Centre",
         imageUrl: "/images/events/students-day.jpg",
-        isHighlighted: true,
         images: {
           create: [
             {

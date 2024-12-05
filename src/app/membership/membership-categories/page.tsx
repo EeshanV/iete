@@ -1,9 +1,13 @@
-'use client'
 
 import React from 'react'
 import { Navbar } from '@/components/Navbar'
 import Link from 'next/link'
 import { Shield, Users, Building } from 'lucide-react'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'MemberShip Categories',
+}
 
 const membershipCategories = [
   {

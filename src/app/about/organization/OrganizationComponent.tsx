@@ -14,6 +14,9 @@ export function OrganizationComponent({ initialMembers }: Props) {
   const [flippedCard, setFlippedCard] = useState<number | null>(null);
   const [expandedBios, setExpandedBios] = useState<{ [key: number]: boolean }>({});
 
+  // Sort members by order value from the database
+  const sortedMembers = initialMembers.sort((a, b) => a.order - b.order);
+
   const handleCardClick = (index: number) => {
     setFlippedCard(flippedCard === index ? null : index);
   };
@@ -47,7 +50,7 @@ export function OrganizationComponent({ initialMembers }: Props) {
         <p className="mb-8 text-gray-600">Meet the dedicated individuals who make up our organization.</p>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {initialMembers.map((member, index) => (
+          {sortedMembers.map((member, index) => (
             <div 
               key={index} 
               className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer"

@@ -1,23 +1,31 @@
-import { prisma } from '@/lib/prisma'
 import { NextResponse } from 'next/server'
+import prisma from '@/lib/prisma'
 
 export async function GET() {
   try {
-    const experts = await prisma.expert.findMany()
+    const experts = await prisma.expert.findMany({
+      orderBy: { createdAt: 'desc' },
+    })
     return NextResponse.json(experts)
-  } catch {
-    return NextResponse.json({ error: 'Error fetching experts' }, { status: 500 })
+  } catch (error) {
+    return NextResponse.json(
+      { error: 'Error fetching experts' },
+      { status: 500 }
+    )
   }
 }
 
 export async function POST(request: Request) {
   try {
-    const json = await request.json()
+    const data = await request.json()
     const expert = await prisma.expert.create({
-      data: json,
+      data,
     })
     return NextResponse.json(expert)
-  } catch {
-    return NextResponse.json({ error: 'Error creating expert' }, { status: 500 })
+  } catch (error) {
+    return NextResponse.json(
+      { error: 'Error creating expert' },
+      { status: 500 }
+    )
   }
 } 

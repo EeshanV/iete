@@ -1,36 +1,63 @@
-import { prisma } from '@/lib/prisma'
 import { NextResponse } from 'next/server'
+import prisma from '@/lib/prisma'
 
-export async function GET(request: Request) {
+export async function GET() {
   try {
-    const { searchParams } = new URL(request.url)
-    const category = searchParams.get('category')
-    const eventId = searchParams.get('id')
-
-    // If eventId is provided, return detailed event info with images
-    if (eventId) {
-      const event = await prisma.event.findUnique({
-        where: { id: parseInt(eventId) },
-        include: { images: true }
-      })
-      return NextResponse.json(event)
-    }
-
-    // Otherwise return filtered events list
-    const where = category && category !== 'all' 
-      ? { category } 
-      : undefined
-
     const events = await prisma.event.findMany({
-      where,
+      include: {
+        images: true,
+      },
       orderBy: {
-        date: 'desc'
-      }
+        date: 'desc',
+      },
     })
-
     return NextResponse.json(events)
   } catch (error) {
     console.error('Error fetching events:', error)
-    return NextResponse.json({ error: 'Failed to fetch events' }, { status: 500 })
+    return new NextResponse(
+      JSON.stringify({ error: 'Error fetching events' }),
+      {
+        status: 500,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    )
+  }
+}
+
+export async function POST(request: Request) {
+  try {
+    const data = await request.json()
+    const event = await prisma.event.create({
+      data: {
+        title: data.title,
+        date: new Date(data.date),
+        description: data.description,
+        imageUrl: data.imageUrl,
+        url: data.url,
+        category: data.category,
+        location: data.location,
+        isHighlighted: data.isHighlighted || false,
+        images: {
+          create: data.images || [],
+        },
+      },
+      include: {
+        images: true,
+      },
+    })
+    return NextResponse.json(event)
+  } catch (error) {
+    console.error('Error creating event:', error)
+    return new NextResponse(
+      JSON.stringify({ error: 'Error creating event' }),
+      {
+        status: 500,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    )
   }
 } 

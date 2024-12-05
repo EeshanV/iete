@@ -19,12 +19,23 @@ export default function OrganizationMembersPage() {
     setIsLoading(true)
     setError(null)
     try {
-      const response = await fetch('/api/organization-members')
+      const response = await fetch('/api/organization-member-institutes')
       if (!response.ok) {
         throw new Error('Failed to fetch organization members')
       }
       const data = await response.json()
-      setMembers(data)
+      
+      const formattedData: OrganizationMemberInstitute[] = data.map((item: any) => ({
+        id: item.id,
+        name: item.name,
+        orgId: item.orgId,
+        address: item.address,
+        contactPerson: item.contactPerson,
+        contact: item.contact,
+        email: item.email,
+      }));
+
+      setMembers(formattedData)
     } catch (error) {
       console.error('Error fetching organization members:', error)
       setError('Failed to load organization members')
